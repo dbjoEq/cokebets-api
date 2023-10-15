@@ -38,7 +38,7 @@ public class UsersController : ControllerBase
     }
 
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [HttpGet(Name = "GetMockUser")]
+    [HttpGet("mock", Name = "GetMockUser")]
     public async Task<IActionResult> GetMockUser()
     {
         var mockUser = new Users()
