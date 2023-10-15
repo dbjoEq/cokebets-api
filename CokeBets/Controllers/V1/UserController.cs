@@ -8,13 +8,13 @@ namespace CokeBets.Controllers.V1;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class UsersController : ControllerBase
+public class UserController : ControllerBase
 {
-    private readonly ILogger<CustomerController> _logger;
+    private readonly ILogger<UserController> _logger;
     private readonly IUsersService _usersService;
 
 
-    public UsersController(ILogger<CustomerController> logger, IUsersService usersService)
+    public UserController(ILogger<UserController> logger, IUsersService usersService)
     {
         _logger = logger;
         _usersService = usersService;
@@ -36,17 +36,22 @@ public class UsersController : ControllerBase
             return NotFound();
         }
     }
-
+    
+    /// <summary>
+    ///     Returns user with given id
+    /// </summary>
+    /// <param name="userId">The user id as configured in the SQL Server</param>
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [HttpGet("mock", Name = "GetMockUser")]
-    public async Task<IActionResult> GetMockUser()
+    [HttpGet("{userId}", Name = "GetUserWithId")]
+    public async Task<IActionResult> GetUserWithId(int userId)
     {
-        var mockUser = new Users()
+        var user = _usersService.GetUser(userId);
+        if (user == null)
         {
-            UserId = 90909090,
-            ExternalProviderId = "120391203910293012",
-            EmailAddress = "testUser@testMail.com"
-        };
-        return Ok(mockUser);
+            return NotFound();
+        }
+
+        return Ok(user);
     }
 }

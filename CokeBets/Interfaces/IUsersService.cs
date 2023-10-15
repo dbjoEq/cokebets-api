@@ -4,5 +4,6 @@ namespace CokeBets.Interfaces;
 
 public interface IUsersService
 {
-    Task<IEnumerable<Users>> GetAllUsers();
+    Task<IEnumerable<User>> GetAllUsers();
+    Task<User> GetUser(int userId);
 }
