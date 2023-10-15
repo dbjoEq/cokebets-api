@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CokeBets.Controllers;
+namespace CokeBets.Controllers.V1;
 
 [ApiController]
 [ApiVersion("1.0")]
-[Route("api/v{api-version:apiVersion}/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]

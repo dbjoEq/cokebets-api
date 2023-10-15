@@ -1,6 +1,8 @@
+using CokeBets.Models;
+
 namespace CokeBets.Interfaces;
 
-public class IUsersService
+public interface IUsersService
 {
-    
+    Task<IEnumerable<Users>> GetAllUsers();
 }
