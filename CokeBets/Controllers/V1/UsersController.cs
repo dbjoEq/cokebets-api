@@ -1,5 +1,6 @@
 using Asp.Versioning;
 using CokeBets.Interfaces;
+using CokeBets.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CokeBets.Controllers.V1;
@@ -34,5 +35,16 @@ public class UsersController : ControllerBase
             Console.WriteLine(e);
             return NotFound();
         }
+    }
+
+    public async Task<IActionResult> GetMockUser()
+    {
+        var mockUser = new Users()
+        {
+            UserId = 90909090,
+            ExternalProviderId = "120391203910293012",
+            EmailAddress = "testUser@testMail.com"
+        };
+        return Ok(mockUser);
     }
 }
